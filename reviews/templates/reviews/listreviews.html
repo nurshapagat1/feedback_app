@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>List of Reviews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'listreviews.css' %}">
+</head>
+<body>
+
+    <a href="/" class="back-btn">← Back to Home</a>
+
+    <h1>Reviews</h1>
+    <p class="subtitle">See what users are saying about our service</p>
+
+    <div class="reviews-container">
+        {% for item in reviews %}
+            <div class="review-card">
+                <p><strong>Username:</strong> {{ item.username }}</p>
+                <p><strong>Rating:</strong> ⭐ {{ item.rating }}</p>
+                <a href="{% url 'singlereview' item.pk %}" class="read-more">Read more</a>
+            </div>
+        {% empty %}
+            <p>No reviews yet.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
